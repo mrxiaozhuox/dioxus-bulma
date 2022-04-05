@@ -20,6 +20,9 @@ pub struct ColumnsProps<'a> {
     #[props(optional)]
     variable_gap: Option<u8>,
 
+    // #[props(optional)]
+    // custom_class: Option<String>,
+
     children: Element<'a>,
 }
 
@@ -52,6 +55,10 @@ pub fn Columns<'a>(cx: Scope<'a, ColumnsProps<'a>>) -> Element {
         }
     }
 
+    // if let Some(class) = &cx.props.custom_class {
+    //     class_name += class;
+    // }
+
     cx.render(rsx! {
         div {
             class: "{class_name}",
@@ -62,7 +69,6 @@ pub fn Columns<'a>(cx: Scope<'a, ColumnsProps<'a>>) -> Element {
 
 #[derive(Props)]
 pub struct ColumnProps<'a> {
-
     #[props(default)]
     is_narrow: bool,
 
@@ -72,12 +78,15 @@ pub struct ColumnProps<'a> {
     #[props(optional)]
     offset: Option<u8>,
 
+    // #[props(optional)]
+    // custom_class: Option<String>,
+
     children: Element<'a>,
 }
 
 pub fn Column<'a>(cx: Scope<'a, ColumnProps<'a>>) -> Element {
     let mut class_name = "column".to_string();
-    
+
     if cx.props.is_narrow {
         class_name += " is-narrow";
     }
@@ -87,12 +96,16 @@ pub fn Column<'a>(cx: Scope<'a, ColumnProps<'a>>) -> Element {
             class_name = format!("{class_name} is-{num}");
         }
     }
-    
+
     if let Some(num) = cx.props.offset {
         if (0..12).contains(&num) {
             class_name = format!("{class_name} is-offset-{num}");
         }
     }
+
+    // if let Some(class) = &cx.props.custom_class {
+    //     class_name += class;
+    // }
 
     cx.render(rsx! {
         div {
