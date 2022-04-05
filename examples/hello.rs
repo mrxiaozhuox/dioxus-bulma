@@ -1,5 +1,9 @@
 use dioxus::prelude::*;
-use dioxus_bulma::columns::{Columns, Column};
+use dioxus_bulma::{
+    columns::{Column, Columns},
+    elements::{Button, ButtonState},
+    Colors,
+};
 
 fn main() {
     dioxus::desktop::launch(App)
@@ -11,7 +15,13 @@ fn App(cx: Scope) -> Element {
     cx.render(rsx! {
         link { rel: "stylesheet", href: "{cdn_url}" }
         Columns {
-            Column { div { "123" } }
+            Column {
+                Button {
+                    r#type: "submit",
+                    color: Colors::Link,
+                    "Hello World"
+                }
+            }
             Column { div { "123" } }
             Column { div { "123" } }
             Column { div { "123" } }

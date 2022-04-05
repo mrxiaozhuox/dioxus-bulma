@@ -1,4 +1,4 @@
-use dioxus::prelude::*;
+use dioxus::{events::MouseEvent, prelude::*};
 
 use crate::{Colors, Sizes};
 
@@ -22,6 +22,9 @@ impl Default for ButtonState {
 #[derive(Props)]
 pub struct ButtonProps<'a> {
     #[props(optional)]
+    r#type: Option<&'a str>,
+
+    #[props(optional)]
     color: Option<Colors>,
 
     #[props(optional)]
@@ -44,6 +47,16 @@ pub struct ButtonProps<'a> {
 
     #[props(default)]
     is_fullwidth: bool,
+
+    #[props(default)]
+    onclick: EventHandler<'a, MouseEvent>,
+
+    #[props(default)]
+    onmousedown: EventHandler<'a, MouseEvent>,
+
+    #[props(default)]
+    onmouseup: EventHandler<'a, MouseEvent>,
+
 
     children: Element<'a>,
 }
@@ -107,11 +120,30 @@ pub fn Button<'a>(cx: Scope<'a, ButtonProps<'a>>) -> Element {
         }
     }
 
+    let mut button_type = "button";
+    if let Some(t) = cx.props.r#type {
+        button_type = t;
+    }
+
     cx.render(rsx! {
         button {
             class: "{class_name}",
+            r#type: "{button_type}",
             disabled: "{disabled}",
+            onclick: move |evt| cx.props.onclick.call(evt),
+            onmousedown: move |evt| cx.props.onmousedown.call(evt),
+            onmouseup: move |evt| cx.props.onmouseup.call(evt),
             &cx.props.children
+        }
+    })
+}
+
+#[inline_props]
+pub fn Buttons<'a>(cx: Scope<'a>, children: Element<'a>) -> Element {
+    cx.render(rsx! {
+        div {
+            class: "buttons",
+            children
         }
     })
 }

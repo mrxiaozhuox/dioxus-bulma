@@ -1,6 +1,7 @@
-mod button;
+pub mod button;
+pub mod image;
 
-pub use button::{Button, ButtonProps, ButtonState};
+pub use button::{Button, ButtonState};
 
 use dioxus::prelude::*;
 
@@ -19,6 +20,16 @@ pub fn Box<'a>(cx: Scope, children: Element<'a>) -> Element {
     cx.render(rsx! {
         div {
             class: "box",
+            children
+        }
+    })
+}
+
+#[inline_props]
+pub fn Content<'a>(cx: Scope, children: Element<'a>) -> Element {
+    cx.render(rsx! {
+        div {
+            class: "content",
             children
         }
     })
