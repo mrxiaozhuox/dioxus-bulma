@@ -1,4 +1,6 @@
-pub mod button;
+mod button;
+
+pub use button::{Button, ButtonProps, ButtonState};
 
 use dioxus::prelude::*;
 
