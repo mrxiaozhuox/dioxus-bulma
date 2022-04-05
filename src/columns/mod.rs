@@ -78,6 +78,10 @@ pub struct ColumnProps<'a> {
 pub fn Column<'a>(cx: Scope<'a, ColumnProps<'a>>) -> Element {
     let mut class_name = "column".to_string();
     
+    if cx.props.is_narrow {
+        class_name += " is-narrow";
+    }
+
     if let Some(num) = cx.props.size {
         if (0..12).contains(&num) {
             class_name = format!("{class_name} is-{num}");
