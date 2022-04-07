@@ -1,6 +1,7 @@
 pub mod button;
 pub mod image;
 pub mod notification;
+pub mod progress;
 
 pub use button::{Button, ButtonState};
 
