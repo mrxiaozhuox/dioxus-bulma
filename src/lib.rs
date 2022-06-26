@@ -3,6 +3,7 @@
 pub mod columns;
 pub mod components;
 pub mod elements;
+pub mod layout;
 
 /// include bulma with css content
 pub fn get_bulma_css() -> &'static str {
