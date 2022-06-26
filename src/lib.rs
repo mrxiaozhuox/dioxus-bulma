@@ -20,7 +20,7 @@ pub fn get_bulma_cdn() -> &'static str {
     "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 pub enum Colors {
     Primary,
     Link,
@@ -52,6 +52,7 @@ impl ToString for Colors {
     }
 }
 
+#[derive(PartialEq)]
 pub enum Sizes {
     Small,
     Normal,

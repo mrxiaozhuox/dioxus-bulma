@@ -42,19 +42,19 @@ pub fn Breadcurmb<'a>(cx: Scope<'a, BreadcurmbProps<'a>>) -> Element {
     let mut extra_class = String::new();
     
     if cx.props.centered {
-        extra_class += "is-centered";
+        extra_class += " is-centered";
     } else if cx.props.right {
-        extra_class += "is-right";
+        extra_class += " is-right";
     }
 
     if cx.props.separator.is_some() {
         let separator = cx.props.separator.as_ref().unwrap().to_string();
-        extra_class += &format!("has-{}-separator", separator);
+        extra_class += &format!(" has-{}-separator", separator);
     }
 
     if cx.props.size.is_some() {
         let size = cx.props.size.as_ref().unwrap().to_string();
-        extra_class += &format!("is-{}", size);
+        extra_class += &format!(" is-{}", size);
     }
 
     cx.render(rsx! {

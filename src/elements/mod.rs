@@ -1,9 +1,11 @@
 mod button;
-pub mod image;
-pub mod notification;
+mod image;
+mod notification;
 pub mod progress;
 
-pub use button::{Button, ButtonState};
+pub use button::{Button, ButtonProps, ButtonState};
+pub use image::{Image, ImageProps};
+pub use notification::{Notification, NotificationProps};
 
 use dioxus::prelude::*;
 
