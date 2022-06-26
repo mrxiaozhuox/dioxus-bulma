@@ -1,5 +1,5 @@
 use dioxus::{desktop::tao::dpi::LogicalSize, prelude::*};
-use dioxus_bulma::{elements::Button, layout::Container, Colors, components::Breadcurmb};
+use dioxus_bulma::prelude::*;
 use dioxus_toast::{ToastFrame, ToastInfo, ToastManager};
 
 static TOAST_MANAGER: AtomRef<ToastManager> = |_| ToastManager::default();

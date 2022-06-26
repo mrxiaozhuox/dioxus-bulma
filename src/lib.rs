@@ -7,6 +7,7 @@ pub mod layout;
 
 pub mod prelude {
     pub use crate::{columns::*, components::*, elements::*, layout::*};
+    pub use crate::{get_bulma_cdn, get_bulma_css, Colors, Sizes};
 }
 
 /// include bulma with css content
