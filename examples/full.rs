@@ -1,5 +1,5 @@
 use dioxus::{desktop::tao::dpi::LogicalSize, prelude::*};
-use dioxus_bulma::prelude::*;
+use dioxus_bulma::prelude::{*, tag::Tag};
 use dioxus_toast::{ToastFrame, ToastInfo, ToastManager};
 
 static TOAST_MANAGER: AtomRef<ToastManager> = |_| ToastManager::default();
@@ -36,13 +36,96 @@ fn App(cx: Scope) -> Element {
                 }
             }
             br {}
-            div {
-                Button {
-                    color: Colors::Info,
-                    onclick: move |_| {
-                        toast.write().popup(ToastInfo::simple("Colors::Info button clicked."));
+            Columns {
+                Column {
+                    Button {
+                        color: Colors::Success,
+                        is_fullwidth: true,
+                        onclick: move |_| {
+                            toast.write().popup(ToastInfo::simple("success button clicked."));
+                        }
+                        "Success"
                     }
-                    "Hello World"
+                }
+                Column {
+                    Button {
+                        color: Colors::Info,
+                        is_fullwidth: true,
+                        onclick: move |_| {
+                            toast.write().popup(ToastInfo::simple("info button clicked."));
+                        }
+                        "Info"
+                    }
+                }
+                Column {
+                    Button {
+                        color: Colors::Warning,
+                        is_fullwidth: true,
+                        onclick: move |_| {
+                            toast.write().popup(ToastInfo::simple("warning button clicked."));
+                        }
+                        "Warning"
+                    }
+                }
+                Column {
+                    Button {
+                        color: Colors::Danger,
+                        is_fullwidth: true,
+                        onclick: move |_| {
+                            toast.write().popup(ToastInfo::simple("danger button clicked."));
+                        }
+                        "Danger"
+                    }
+                }
+            }
+            br {}
+            Columns {
+                Column {
+                    Progress {
+                        color: Colors::Primary
+                    }
+                }
+                Column {
+                    Progress {
+                        max: 100,
+                        value: 30,
+                        color: Colors::Info
+                    }
+                }
+                Column {
+                    Progress {
+                        max: 100,
+                        value: 85,
+                        color: Colors::Dark
+                    }
+                }
+            }
+            br {}
+            div {
+                class: "tags",
+                Tag {
+                    color: Colors::Danger,
+                    size: Sizes::Medium,
+                    deletable: false,
+                    "Rust"
+                }
+                Tag {
+                    color: Colors::Info,
+                    size: Sizes::Medium,
+                    deletable: false,
+                    "Python"
+                }
+                Tag {
+                    color: Colors::Link,
+                    size: Sizes::Medium,
+                    deletable: false,
+                    "Go"
+                }
+                Tag {
+                    color: Colors::Success,
+                    size: Sizes::Medium,
+                    deletable: true,
+                    "PHP"
                 }
             }
         }

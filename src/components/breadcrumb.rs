@@ -24,9 +24,9 @@ impl ToString for Separator {
 #[derive(Props)]
 pub struct BreadcurmbProps<'a> {
     #[props(default)]
-    centered: bool,
+    is_centered: bool,
     #[props(default)]
-    right: bool,
+    is_right: bool,
 
     #[props(optional)]
     separator: Option<Separator>,
@@ -41,9 +41,9 @@ pub fn Breadcurmb<'a>(cx: Scope<'a, BreadcurmbProps<'a>>) -> Element {
 
     let mut extra_class = String::new();
     
-    if cx.props.centered {
+    if cx.props.is_centered {
         extra_class += " is-centered";
-    } else if cx.props.right {
+    } else if cx.props.is_right {
         extra_class += " is-right";
     }
 

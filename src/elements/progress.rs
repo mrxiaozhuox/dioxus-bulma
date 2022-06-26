@@ -19,18 +19,28 @@ pub struct ProgressProps {
 pub fn Progress(cx: Scope<ProgressProps>) -> Element {
     let mut extra_class = String::new();
 
-    if cx.props.size.is_none() {
+    if cx.props.size.is_some() {
         extra_class += &format!(" is-{}", cx.props.size.as_ref().unwrap().to_string());
     }
 
-    if cx.props.color.is_none() {
+    if cx.props.color.is_some() {
         extra_class += &format!(" is-{}", cx.props.color.as_ref().unwrap().to_string());
     }
 
-    cx.render(rsx! {
-        progress {
-            class: "progress {extra_class}",
-            value: "{cx.props.value}",
-        }
-    })
+    if cx.props.value != 0 {
+        cx.render(rsx! {
+            progress {
+                class: "progress {extra_class}",
+                value: "{cx.props.value}",
+                max: "{cx.props.max}",
+            }
+        })
+    } else {
+        cx.render(rsx! {
+            progress {
+                class: "progress {extra_class}",
+                max: "{cx.props.max}",
+            }
+        })
+    }
 }
