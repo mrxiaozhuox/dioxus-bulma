@@ -5,6 +5,10 @@ pub mod components;
 pub mod elements;
 pub mod layout;
 
+pub mod prelude {
+    pub use crate::{columns::*, components::*, elements::*, layout::*};
+}
+
 /// include bulma with css content
 pub fn get_bulma_css() -> &'static str {
     include_str!("./assets/bulma.min.css")

@@ -1,13 +1,13 @@
 use dioxus::{desktop::tao::dpi::LogicalSize, prelude::*};
-use dioxus_bulma::{elements::Button, Colors};
-use dioxus_toast::{ToastManager, ToastFrame, ToastInfo};
+use dioxus_bulma::{elements::Button, layout::Container, Colors, components::Breadcurmb};
+use dioxus_toast::{ToastFrame, ToastInfo, ToastManager};
 
 static TOAST_MANAGER: AtomRef<ToastManager> = |_| ToastManager::default();
 
 fn main() {
     dioxus::desktop::launch_cfg(App, |config| {
         config.with_window(|win| {
-            win.with_title("Dioxus Bulma - Example")
+            win.with_title("Dioxus Bulma - Full Example")
                 .with_inner_size(LogicalSize::new(1200, 700))
         })
     })
@@ -15,7 +15,6 @@ fn main() {
 
 #[allow(non_snake_case)]
 fn App(cx: Scope) -> Element {
-
     let toast = use_atom_ref(&cx, TOAST_MANAGER);
 
     let cdn_url = dioxus_bulma::get_bulma_cdn();
@@ -25,14 +24,26 @@ fn App(cx: Scope) -> Element {
             manager: toast
         }
         br {}
-        div {
-            class: "container",
-            Button {
-                color: Colors::Info,
-                onclick: move |_| {
-                    toast.write().popup(ToastInfo::simple("Colors::Info button clicked."));
+        Container {
+            fluid: true,
+            div {
+                Breadcurmb {
+                    ul {
+                        li { a { href: "#", "DioxusLabs" } }
+                        li { a { href: "#", "dioxus" } }
+                        li { a { href: "#", "dioxus-bulma" } }
+                    }
                 }
-                "Hello World"
+            }
+            br {}
+            div {
+                Button {
+                    color: Colors::Info,
+                    onclick: move |_| {
+                        toast.write().popup(ToastInfo::simple("Colors::Info button clicked."));
+                    }
+                    "Hello World"
+                }
             }
         }
     })
