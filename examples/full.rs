@@ -1,5 +1,8 @@
 use dioxus::{desktop::tao::dpi::LogicalSize, prelude::*};
-use dioxus_bulma::prelude::{*, tag::Tag};
+use dioxus_bulma::prelude::{
+    tag::{Tag, Tags},
+    *,
+};
 use dioxus_toast::{ToastFrame, ToastInfo, ToastManager};
 
 static TOAST_MANAGER: AtomRef<ToastManager> = |_| ToastManager::default();
@@ -101,8 +104,7 @@ fn App(cx: Scope) -> Element {
                 }
             }
             br {}
-            div {
-                class: "tags",
+            Tags {
                 Tag {
                     color: Colors::Danger,
                     size: Sizes::Medium,
@@ -124,7 +126,7 @@ fn App(cx: Scope) -> Element {
                 Tag {
                     color: Colors::Success,
                     size: Sizes::Medium,
-                    deletable: true,
+                    deletable: false,
                     "PHP"
                 }
             }

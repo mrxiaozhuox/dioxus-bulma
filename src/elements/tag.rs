@@ -74,3 +74,21 @@ pub fn Tag<'a>(cx: Scope<'a, TagProps<'a>>) -> Element {
         })
     }
 }
+
+#[derive(Props)]
+pub struct TagsProps<'a> {
+    #[props(default)]
+    addons: bool,
+
+    children: Element<'a>,
+}
+
+pub fn Tags<'a>(cx: Scope<'a, TagsProps<'a>>) -> Element {
+    let extra_class = if cx.props.addons { " has-addons" } else { "" };
+    cx.render(rsx! {
+        div {
+            class: "tags {extra_class}",
+            &cx.props.children
+        }
+    })
+}
