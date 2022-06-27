@@ -1,6 +1,6 @@
 use dioxus::{desktop::tao::dpi::LogicalSize, prelude::*};
 use dioxus_bulma::prelude::{
-    tag::{Tag, Tags},
+    tag::{Tag, Tags, TagLink},
     *,
 };
 use dioxus_toast::{ToastFrame, ToastInfo, ToastManager};
@@ -106,9 +106,10 @@ fn App(cx: Scope) -> Element {
             br {}
             Columns {
                 Column {
+                    size: 4,
                     Tags {
                         Tag {
-                            color: Colors::Danger,
+                            color: Colors::Warning,
                             size: Sizes::Medium,
                             "Rust"
                         }
@@ -118,6 +119,16 @@ fn App(cx: Scope) -> Element {
                             "Go"
                         }
                         Tag {
+                            color: Colors::Info,
+                            size: Sizes::Medium,
+                            "Python"
+                        }
+                        Tag {
+                            color: Colors::Danger,
+                            size: Sizes::Medium,
+                            "Ruby"
+                        }
+                        Tag {
                             color: Colors::Dark,
                             size: Sizes::Medium,
                             "C++"
@@ -125,6 +136,7 @@ fn App(cx: Scope) -> Element {
                     }
                 }
                 Column {
+                    size: 3,
                     Tags {
                         Tag {
                             color: Colors::Danger,
@@ -147,6 +159,7 @@ fn App(cx: Scope) -> Element {
                     }
                 }
                 Column {
+                    size: 4,
                     div {
                         class: "field is-grouped is-grouped-multiline",
                         div {
@@ -181,6 +194,17 @@ fn App(cx: Scope) -> Element {
                                 }
                             }
                         }
+                    }
+                }
+                Column {
+                    size: 1,
+                    TagLink {
+                        color: Colors::Link,
+                        size: Sizes::Medium,
+                        onclick: |_| {
+                            toast.write().popup(ToastInfo::simple("clickable tag clicked."));
+                        }
+                        "Link"
                     }
                 }
             }
