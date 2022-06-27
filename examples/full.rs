@@ -104,30 +104,84 @@ fn App(cx: Scope) -> Element {
                 }
             }
             br {}
-            Tags {
-                Tag {
-                    color: Colors::Danger,
-                    size: Sizes::Medium,
-                    deletable: false,
-                    "Rust"
+            Columns {
+                Column {
+                    Tags {
+                        Tag {
+                            color: Colors::Danger,
+                            size: Sizes::Medium,
+                            "Rust"
+                        }
+                        Tag {
+                            color: Colors::Link,
+                            size: Sizes::Medium,
+                            "Go"
+                        }
+                        Tag {
+                            color: Colors::Dark,
+                            size: Sizes::Medium,
+                            "C++"
+                        }
+                    }
                 }
-                Tag {
-                    color: Colors::Info,
-                    size: Sizes::Medium,
-                    deletable: false,
-                    "Python"
+                Column {
+                    Tags {
+                        Tag {
+                            color: Colors::Danger,
+                            size: Sizes::Medium,
+                            deletable: true,
+                            "React"
+                        }
+                        Tag {
+                            color: Colors::Success,
+                            size: Sizes::Medium,
+                            deletable: true,
+                            "Vue"
+                        }
+                        Tag {
+                            color: Colors::Dark,
+                            size: Sizes::Medium,
+                            deletable: true,
+                            "Dioxus"
+                        }
+                    }
                 }
-                Tag {
-                    color: Colors::Link,
-                    size: Sizes::Medium,
-                    deletable: false,
-                    "Go"
-                }
-                Tag {
-                    color: Colors::Success,
-                    size: Sizes::Medium,
-                    deletable: false,
-                    "PHP"
+                Column {
+                    div {
+                        class: "field is-grouped is-grouped-multiline",
+                        div {
+                            class: "control",
+                            Tags {
+                                addons: true,
+                                Tag {
+                                    color: Colors::Dark,
+                                    size: Sizes::Medium,
+                                    "crates.io"
+                                }
+                                Tag {
+                                    color: Colors::Warning,
+                                    size: Sizes::Medium,
+                                    "v0.2.4"
+                                }
+                            }
+                        }
+                        div {
+                            class: "control",
+                            Tags {
+                                addons: true,
+                                Tag {
+                                    color: Colors::Dark,
+                                    size: Sizes::Medium,
+                                    "docs"
+                                }
+                                Tag {
+                                    color: Colors::Info,
+                                    size: Sizes::Medium,
+                                    "latest"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
